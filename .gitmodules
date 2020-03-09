@@ -1,0 +1,3 @@
+[submodule "modules/dccomms_packets"]
+	path = modules/dccomms_packets
+	url = https://github.com/dcentelles/dccomms_packets.git

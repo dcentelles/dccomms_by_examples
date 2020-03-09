@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+<!DOCTYPE UWSimScene SYSTEM "UWSimScene.dtd">
+<UWSimScene>
+  <oceanState>
+    <windx> 0.1 </windx>
+    <windy> 0.1 </windy>
+    <windSpeed> 12 </windSpeed>
+    <depth> 1000 </depth>
+    <reflectionDamping> 0.35 </reflectionDamping>
+    <waveScale> 1e-8 </waveScale>
+    <isNotChoppy> 0 </isNotChoppy>
+    <choppyFactor> -2.5 </choppyFactor>
+    <crestFoamHeight> 2.2 </crestFoamHeight>
+    <oceanSurfaceHeight> 0 </oceanSurfaceHeight>
+    <fog>
+      <density> 0.1 </density>
+      <color>
+        <r>0.017</r>
+        <g>0.027</g>
+        <b>0.079</b>
+      </color>
+    </fog>
+    <color>
+      <r>0.017</r>
+      <g>0.027</g>
+      <b>0.079</b>
+    </color>
+    <attenuation>
+      <r>0.15</r>
+      <g>0.075 </g>
+      <b> 0.05 </b>
+    </attenuation>
+  </oceanState>
+  <simParams>
+    <disableShaders> 0 </disableShaders>
+    <resw> 800 </resw>
+    <resh> 600 </resh>
+    <offsetp>
+      <x>0</x>
+      <y>0</y>
+      <z>0</z>
+    </offsetp>
+    <offsetr>
+      <x> 3.14</x>
+      <y> 0</y>
+      <z> -1.57 </z>
+    </offsetr>
+    <enablePhysics> 0 </enablePhysics>
+  </simParams>
+  <camera>
+    <freeMotion> 1 </freeMotion>
+    <objectToTrack>bluerov2/base_link</objectToTrack>
+    <fov> 60 </fov>
+    <aspectRatio> 1.33 </aspectRatio>
+    <near> 0.1 </near>
+    <far> 10000 </far>
+    <position>
+      <x>-2.77</x>
+      <y>-0.14 </y>
+      <z>-0.85 </z>
+    </position>
+    <lookAt>
+      <x>-0.835</x>
+      <y>1.881 </y>
+      <z>-2.603 </z>
+    </lookAt>
+  </camera>
+
+  <!--
+  ###################################################################
+  #################### CUSTOM COMMS CHANNELS ########################
+  ###################################################################
+  -->
+  <CustomCommsChannel>
+    <id>0</id>
+    <!-- acoustic speed in water ms/m-->
+    <propTimeIncPerMeter>0.6667</propTimeIncPerMeter> 
+    <minPropTime>0</minPropTime>
+    <logLevel>warn</logLevel>
+  </CustomCommsChannel>
+
+<!--
+###################################################################
+########################## VEHICLES ###############################
+###################################################################
+-->
+  <vehicle>
+    <name>bluerov_0</name>
+    <file>data/scenes/bluerov2.urdf</file>
+    <position>
+      <x> 10 </x>
+      <y> 0 </y>
+      <z> 4 </z>
+    </position>
+    <orientation>
+      <r>0</r>
+      <p>0</p>
+      <y>0</y>
+    </orientation>
+    <CustomCommsDevice>
+      <dccommsId>bluerov0-dev</dccommsId>
+      <txChannelId>0</txChannelId>
+      <rxChannelId>0</rxChannelId>
+      <relativeTo>base_link</relativeTo>
+      <mac>1</mac>
+      <bitrate>1800</bitrate>
+      <txFifoSize>500</txFifoSize>
+      <tfId>bluerov0-dev</tfId>
+      <position>
+        <x>0</x>
+        <y>0</y>
+        <z>-0.03</z>
+      </position>
+      <orientation>
+        <r>3.141592653589793</r>
+        <p>0</p>
+        <y>0</y>
+      </orientation>
+      <mesh>
+        <path>data/objects/s100.3ds</path>
+        <scaleFactor>
+          <x>0.001</x>
+          <y>0.001</y>
+          <z>0.001</z>
+        </scaleFactor>
+      </mesh>
+      <!-- instrinsic delay in ms -->
+      <intrinsicDelay>1</intrinsicDelay>
+      <!-- range limits in meters -->
+      <maxDistance>100</maxDistance>
+      <minDistance>0</minDistance>
+      <rateErrorModel>
+        <errorUnit>bit</errorUnit>
+        <errorRateExpr>0</errorRateExpr>
+      </rateErrorModel>
+      <txPacketBuilder>
+        <className>VariableLength2BPacketBuilder</className>
+      </txPacketBuilder>
+      <rxPacketBuilder>
+        <className>VariableLength2BPacketBuilder</className>
+      </rxPacketBuilder>
+      <logLevel>off</logLevel>
+    </CustomCommsDevice>
+  </vehicle>
+
+  <!-- BLUEROV FOLLOWER -->
+  <vehicle>
+    <name>bluerov_1</name>
+    <file>data/scenes/bluerov2.urdf</file>
+    <position>
+      <x> 0 </x>
+      <y> 0 </y>
+      <z> 4 </z>
+    </position>
+    <orientation>
+      <r>0</r>
+      <p>0</p>
+      <y>0</y>
+    </orientation>
+    <CustomCommsDevice>
+      <dccommsId>bluerov1-dev</dccommsId>
+      <txChannelId>0</txChannelId>
+      <rxChannelId>0</rxChannelId>
+      <relativeTo>base_link</relativeTo>
+      <mac>2</mac>
+      <bitrate>1800</bitrate>
+      <txFifoSize>500</txFifoSize>
+      <tfId>bluerov1-dev</tfId>
+      <position>
+        <x>0</x>
+        <y>0</y>
+        <z>-0.03</z>
+      </position>
+      <orientation>
+        <r>3.141592653589793</r>
+        <p>0</p>
+        <y>0</y>
+      </orientation>
+      <mesh>
+        <path>data/objects/s100.3ds</path>
+        <scaleFactor>
+          <x>0.001</x>
+          <y>0.001</y>
+          <z>0.001</z>
+        </scaleFactor>
+      </mesh>
+      <!-- instrinsic delay in ms -->
+      <intrinsicDelay>1</intrinsicDelay>
+      <!-- range limits in meters -->
+      <maxDistance>100</maxDistance>
+      <minDistance>0</minDistance>
+      <rateErrorModel>
+        <errorUnit>bit</errorUnit>
+        <errorRateExpr>0</errorRateExpr>
+      </rateErrorModel>
+      <txPacketBuilder>
+        <className>VariableLength2BPacketBuilder</className>
+      </txPacketBuilder>
+      <rxPacketBuilder>
+        <className>VariableLength2BPacketBuilder</className>
+      </rxPacketBuilder>
+      <logLevel>off</logLevel>
+    </CustomCommsDevice>
+  </vehicle>
+
+  <!--
+##############################################################
+###################### END VEHICLES ##########################
+##############################################################
+-->
+  <object>
+    <name> terrain </name>
+    <file> terrain/desert/desert2.3ds  </file>
+    <position>
+      <x> 0</x>
+      <y> 0 </y>
+      <z> 20 </z>
+    </position>
+    <orientation>
+      <r>0.0</r>
+      <p>1.57 </p>
+      <y>0 </y>
+    </orientation>
+    <physics>
+      <mass> 0 </mass>
+      <collisionShapeType> trimesh </collisionShapeType>
+    </physics>
+  </object>
+  <rosInterfaces>
+    <ROSOdomToPAT>
+      <topic> /bluerov0/odom </topic>
+      <vehicleName> bluerov0 </vehicleName>
+    </ROSOdomToPAT>
+    <ROSOdomToPAT>
+      <topic> /bluerov1/odom </topic>
+      <vehicleName> bluerov1 </vehicleName>
+    </ROSOdomToPAT>
+    <WorldToROSTF>
+      <rootName> world </rootName>
+      <enableObjects> 1 </enableObjects>
+      <rate>10</rate>
+    </WorldToROSTF>
+     <ROSTwistToPAT>
+      <topic> /bluerov0/velocityCommand </topic>
+      <vehicleName> bluerov0 </vehicleName>
+    </ROSTwistToPAT>   
+    <ROSTwistToPAT>
+      <topic> /bluerov1/velocityCommand </topic>
+      <vehicleName> bluerov1 </vehicleName>
+    </ROSTwistToPAT>   
+    <ROSPoseToPAT>
+      <topic> /bluerov0/pose </topic>
+      <vehicleName> bluerov0 </vehicleName>
+    </ROSPoseToPAT>
+    <ROSPoseToPAT>
+      <topic> /bluerov1/pose </topic>
+      <vehicleName> bluerov1 </vehicleName>
+    </ROSPoseToPAT>
+    <CustomCommsDeviceROS>
+      <name>bluerov0-dev</name>
+      <topic>bluerov0/commsdev</topic>
+      <rate>10</rate>
+    </CustomCommsDeviceROS>
+    <CustomCommsDeviceROS>
+      <name>bluerov1-dev</name>
+      <topic>bluerov1/commsdev</topic>
+      <rate>10</rate>
+    </CustomCommsDeviceROS>
+  </rosInterfaces>
+</UWSimScene>
