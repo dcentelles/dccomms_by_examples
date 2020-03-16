@@ -6,10 +6,8 @@ scene=$scriptDir/hello_world.xml
 dtd=$scriptDir/UWSimScene.dtd
 
 uwdata=$(rospack find uwsim)/data/scenes/
-if [ ! -f $dtd ]
-then
-	ln -s $uwdata/UWSimScene.dtd $dtd
-fi
+rm -f $dtd
+ln -s $uwdata/UWSimScene.dtd $dtd
 
 
 scenepath=$(realpath $scene)
