@@ -3,12 +3,12 @@
 scriptPath=$(realpath $0)
 scriptDir=$(dirname $scriptPath)/
 scene=$scriptDir/hello_world.xml
-dtd=UWSimScene.dtd
+dtd=$scriptDir/UWSimScene.dtd
 
 uwdata=$(rospack find uwsim)/data/scenes/
 if [ ! -f $dtd ]
 then
-	ln -s $uwdata/$dtd $scriptDir/$dtd
+	ln -s $uwdata/$dtd $dtd
 fi
 
 
