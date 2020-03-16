@@ -8,7 +8,7 @@ dtd=$scriptDir/UWSimScene.dtd
 uwdata=$(rospack find uwsim)/data/scenes/
 if [ ! -f $dtd ]
 then
-	ln -s $uwdata/$dtd $dtd
+	ln -s $uwdata/UWSimScene.dtd $dtd
 fi
 
 
