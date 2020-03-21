@@ -68,6 +68,18 @@
 
   <!--
   ###################################################################
+  #################### CUSTOM TRACING SCRIPT ########################
+  ###################################################################
+  -->
+
+  <netTracingScript>
+    <className>LogCommsTracing</className>
+    <libPath>libnetsim_tracing_examples.so</libPath>
+    <logToFile></logToFile>
+  </netTracingScript>
+
+  <!--
+  ###################################################################
   #################### CUSTOM COMMS CHANNELS ########################
   ###################################################################
   -->
@@ -103,7 +115,7 @@
       <rxChannelId>0</rxChannelId>
       <relativeTo>base_link</relativeTo>
       <mac>1</mac>
-      <bitrate>1800</bitrate>
+      <bitrate>600</bitrate>
       <txFifoSize>500</txFifoSize>
       <tfId>bluerov0-dev</tfId>
       <position>
@@ -163,7 +175,7 @@
       <rxChannelId>0</rxChannelId>
       <relativeTo>base_link</relativeTo>
       <mac>2</mac>
-      <bitrate>1800</bitrate>
+      <bitrate>600</bitrate>
       <txFifoSize>500</txFifoSize>
       <tfId>bluerov1-dev</tfId>
       <position>

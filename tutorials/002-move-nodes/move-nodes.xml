@@ -68,6 +68,18 @@
 
   <!--
   ###################################################################
+  #################### CUSTOM TRACING SCRIPT ########################
+  ###################################################################
+  -->
+
+  <netTracingScript>
+    <className>MoveNodesTracing</className>
+    <libPath>libnetsim_tracing_examples.so</libPath>
+    <logToFile></logToFile>
+  </netTracingScript>
+
+  <!--
+  ###################################################################
   #################### CUSTOM COMMS CHANNELS ########################
   ###################################################################
   -->
@@ -88,7 +100,7 @@
     <name>bluerov_0</name>
     <file>data/scenes/bluerov2.urdf</file>
     <position>
-      <x> 10 </x>
+      <x> 1 </x>
       <y> 0 </y>
       <z> 4 </z>
     </position>
@@ -103,7 +115,7 @@
       <rxChannelId>0</rxChannelId>
       <relativeTo>base_link</relativeTo>
       <mac>1</mac>
-      <bitrate>1800</bitrate>
+      <bitrate>600</bitrate>
       <txFifoSize>500</txFifoSize>
       <tfId>bluerov0-dev</tfId>
       <position>
@@ -163,7 +175,7 @@
       <rxChannelId>0</rxChannelId>
       <relativeTo>base_link</relativeTo>
       <mac>2</mac>
-      <bitrate>1800</bitrate>
+      <bitrate>600</bitrate>
       <txFifoSize>500</txFifoSize>
       <tfId>bluerov1-dev</tfId>
       <position>
@@ -232,6 +244,14 @@
       <enableObjects> 1 </enableObjects>
       <rate>10</rate>
     </WorldToROSTF>
+     <ROSTwistToPAT>
+      <topic> /bluerov0/velocityCommand </topic>
+      <vehicleName> bluerov_0 </vehicleName>
+    </ROSTwistToPAT>   
+    <ROSTwistToPAT>
+      <topic> /bluerov1/velocityCommand </topic>
+      <vehicleName> bluerov_1 </vehicleName>
+    </ROSTwistToPAT>   
     <CustomCommsDeviceROS>
       <name>bluerov0-dev</name>
       <topic>bluerov0/commsdev</topic>
