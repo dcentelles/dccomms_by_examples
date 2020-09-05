@@ -115,4 +115,10 @@ target_link_libraries(hello_world_tx ${DCCOMMS_PACKETS_GIT})
 add_executable (hello_world_rx ${SRCPATH}000-hello-world/hello_world_rx.cpp)
 target_link_libraries(hello_world_rx ${DCCOMMS_PACKETS_GIT})
 
+add_executable (hello_world_mac_tx ${SRCPATH}003-add-mac-layer/hello_world_mac_tx.cpp)
+target_link_libraries(hello_world_mac_tx ${DCCOMMS_PACKETS_GIT})
+
+add_executable (hello_world_mac_rx ${SRCPATH}003-add-mac-layer/hello_world_mac_rx.cpp)
+target_link_libraries(hello_world_mac_rx ${DCCOMMS_PACKETS_GIT})
+
 message("End ${PROJECT_NAME_ORIG}")
