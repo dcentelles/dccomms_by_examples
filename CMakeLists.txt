@@ -102,7 +102,8 @@ add_definitions(-fPIC -std=c++11)
 
 SET(SRCPATH ${CMAKE_CURRENT_SOURCE_DIR}/tutorials/)
 SET(${PROJECT_NAME}_INCLUDE_DIRS
-    #${SRCPATH}/include
+    ${${DCCOMMS_PACKETS_GIT}_INCLUDE_DIRS}
+    modules/cxxopts/include
 )
 
 include_directories(
@@ -120,5 +121,8 @@ target_link_libraries(hello_world_mac_tx ${DCCOMMS_PACKETS_GIT})
 
 add_executable (hello_world_mac_rx ${SRCPATH}003-add-mac-layer/hello_world_mac_rx.cpp)
 target_link_libraries(hello_world_mac_rx ${DCCOMMS_PACKETS_GIT})
+
+add_executable (custom_node ${SRCPATH}004-errors/custom_node.cpp)
+target_link_libraries(custom_node ${DCCOMMS_PACKETS_GIT} cxxopts)
 
 message("End ${PROJECT_NAME_ORIG}")

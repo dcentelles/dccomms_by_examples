@@ -73,7 +73,7 @@
   -->
 
   <netTracingScript>
-    <className>LogMacCommsTracing</className>
+    <className>ErrorsTracing</className>
     <libPath>libnetsim_tracing_examples.so</libPath>
     <logToFile></logToFile>
   </netTracingScript>
@@ -86,12 +86,12 @@
   <CustomCommsChannel>
     <id>0</id>
     <!-- acoustic speed in water ms/m-->
-    <propTimeIncPerMeter>0.6667</propTimeIncPerMeter>
+    <propTimeIncPerMeter>0.6667</propTimeIncPerMeter> 
     <minPropTime>0</minPropTime>
     <logLevel>debug</logLevel>
   </CustomCommsChannel>
 
-  <!--
+<!--
 ###################################################################
 ########################## VEHICLES ###############################
 ###################################################################
@@ -115,15 +115,8 @@
       <rxChannelId>0</rxChannelId>
       <relativeTo>base_link</relativeTo>
       <mac>1</mac>
-      <macProtocol>
-        <name>aloha</name>
-        <!--
-        <name>sfama</name>
-        <maxBackoffSlots>10</maxBackoffSlots>
-        -->
-      </macProtocol>
       <bitrate>600</bitrate>
-      <txFifoSize>500</txFifoSize>
+      <txFifoSize>200</txFifoSize>
       <tfId>bluerov0-dev</tfId>
       <position>
         <x>0</x>
@@ -150,7 +143,7 @@
       <minDistance>0</minDistance>
       <rateErrorModel>
         <errorUnit>bit</errorUnit>
-        <errorRateExpr>0</errorRateExpr>
+        <errorRateExpr>6e-13*m^13.7</errorRateExpr>
       </rateErrorModel>
       <txPacketBuilder>
         <className>VariableLength2BPacketBuilder</className>
@@ -182,15 +175,8 @@
       <rxChannelId>0</rxChannelId>
       <relativeTo>base_link</relativeTo>
       <mac>2</mac>
-      <macProtocol>
-        <name>aloha</name>
-        <!--
-        <name>sfama</name>
-        <maxBackoffSlots>10</maxBackoffSlots>
-        -->
-      </macProtocol>
       <bitrate>600</bitrate>
-      <txFifoSize>500</txFifoSize>
+      <txFifoSize>200</txFifoSize>
       <tfId>bluerov1-dev</tfId>
       <position>
         <x>0</x>
@@ -217,7 +203,7 @@
       <minDistance>0</minDistance>
       <rateErrorModel>
         <errorUnit>bit</errorUnit>
-        <errorRateExpr>0</errorRateExpr>
+        <errorRateExpr>6e-13*m^13.7</errorRateExpr>
       </rateErrorModel>
       <txPacketBuilder>
         <className>VariableLength2BPacketBuilder</className>
@@ -258,14 +244,14 @@
       <enableObjects> 1 </enableObjects>
       <rate>10</rate>
     </WorldToROSTF>
-    <ROSTwistToPAT>
+     <ROSTwistToPAT>
       <topic> /bluerov0/velocityCommand </topic>
       <vehicleName> bluerov_0 </vehicleName>
-    </ROSTwistToPAT>
+    </ROSTwistToPAT>   
     <ROSTwistToPAT>
       <topic> /bluerov1/velocityCommand </topic>
       <vehicleName> bluerov_1 </vehicleName>
-    </ROSTwistToPAT>
+    </ROSTwistToPAT>   
     <CustomCommsDeviceROS>
       <name>bluerov0-dev</name>
       <topic>bluerov0/commsdev</topic>
